@@ -11,10 +11,10 @@ call vundle#rc()
 "set serach text  hightlight
 set hlsearch 
 
+
 "highlighting current line 
 set cursorline
-
-
+Plugin 'heavenshell/vim-jsdoc'
 Plugin 'scrooloose/nerdtree'  "文件浏览
 Plugin 'majutsushi/tagbar'    "代码符号
 Plugin 'wesleyche/SrcExpl'    "类似sourceInsight的代码预览窗口
@@ -61,6 +61,24 @@ Plugin 'elzr/vim-json'
 
 "根據.editconfig配制"
 Plugin 'maksimr/vim-jsbeautify'
+
+"程式碼檢查"
+"let g:syntastic_debug=3 "If you need debug syntastic , open it
+Plugin 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"let g:syntastic_javascript_checkers = ['standard']
+"let g:syntastic_javascript_standard_generic = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint'
+highlight link SyntasticError ErrorMsg 
+highlight link SyntasticErrorSign WarningMsg 
+"---------------------------------------------------------------
 
 "let g:indent_guides_enable_on_vim_startup = 1
 "let g:indent_guides_guide_size = 1 
@@ -175,6 +193,8 @@ nmap <F4> :call JsBeautify()<CR>
 " " for css or scss
  autocmd FileType css noremap <buffer> <c -f> :call CSSBeautify()<cr>
  autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+
+ "caps lock + n  ===> auto complete word "
 
 "快速鍵--------------------------------------------------------------
 
