@@ -10,11 +10,16 @@ call vundle#rc()
 
 "set serach text  hightlight
 set hlsearch 
-
-
 "highlighting current line 
 set cursorline
+
+"=================================================================
+" ALL Plugin
+"=================================================================
+
+" :JsDoc
 Plugin 'heavenshell/vim-jsdoc'
+
 Plugin 'scrooloose/nerdtree'  "文件浏览
 Plugin 'majutsushi/tagbar'    "代码符号
 Plugin 'wesleyche/SrcExpl'    "类似sourceInsight的代码预览窗口
@@ -24,9 +29,11 @@ Plugin 'moll/vim-node'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'bling/vim-airline'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'marijnh/tern_for_vim'
-"Plugin 'Valloric/YouCompleteMe'
 Plugin 'Raimondi/delimitMate' "引号配对补全
+
+"-----------------------------------------------------------------
+" 快速注解
+"-----------------------------------------------------------------
 Plugin 'scrooloose/nerdcommenter' "快速注释
 "[d] shift+v+方向键选中(默认当前行)
 "    -> ,cc      加上注释
@@ -34,19 +41,23 @@ Plugin 'scrooloose/nerdcommenter' "快速注释
 "    -> ,c<space> 加上/解开注释
 "    -> ,cy      先复制再注解, p可以粘贴未注释前的代码
 
-"Plugin 'SirVer/ultisnips'
-Plugin 'flazz/vim-colorschemes'
+"-----------------------------------------------------------------
+" /快速注解
+"-----------------------------------------------------------------
 
+Plugin 'flazz/vim-colorschemes'
 
 "display indent levels in code 
 Plugin 'nathanaelkane/vim-indent-guides'
 
+"-----------------------------------------------------------------
+" 格式排序
+"-----------------------------------------------------------------
+Plugin 'editorconfig/editorconfig-vim'
 "js檔格式排序"
 "執行:Leaderff"
 Plugin 'jsbeautify'
 
-"執行:<c-y>, "
-Plugin 'Emmet.vim'
 
 "html排序"
 Plugin 'bitfyre/vim-indent-html'
@@ -54,15 +65,25 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc" 
 let g:html_indent_inctags = "html,body,head"
 
+"根據.editconfig配制"
+Plugin 'maksimr/vim-jsbeautify'
+"-----------------------------------------------------------------
+" /格式排序
+"-----------------------------------------------------------------
+
+"執行:<c-y>, "
+Plugin 'Emmet.vim'
+
+
 "typescript"
 Plugin 'leafgarland/typescript-vim'
 
 Plugin 'elzr/vim-json'
 
-"根據.editconfig配制"
-Plugin 'maksimr/vim-jsbeautify'
+"-----------------------------------------------------------------
+" 程式碼檢查
+"-----------------------------------------------------------------
 
-"程式碼檢查"
 "let g:syntastic_debug=3 "If you need debug syntastic , open it
 Plugin 'scrooloose/syntastic'
 set statusline+=%#warningmsg#
@@ -76,9 +97,37 @@ let g:syntastic_check_on_wq = 0
 "let g:syntastic_javascript_standard_generic = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint'
+let g:syntastic_typescript_checkers = ['eslint']
+let g:syntastic_typescript_eslint_exec = 'eslint'
 highlight link SyntasticError ErrorMsg 
 highlight link SyntasticErrorSign WarningMsg 
-"---------------------------------------------------------------
+"-----------------------------------------------------------------
+" /程式碼檢查
+"-----------------------------------------------------------------
+
+"-----------------------------------------------------------------
+" Javascript補全
+"-----------------------------------------------------------------
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'marijnh/tern_for_vim'
+
+
+"-----------------------------------------------------------------
+" /Javascript補全
+"-----------------------------------------------------------------
+
+
+"-----------------------------------------------------------------
+" File search
+"-----------------------------------------------------------------
+Plugin 'Shougo/unite.vim'
+
+nnoremap <C-f> :Unite -start-insert file<CR>
+nnoremap <C-b> :Unite buffer<CR>
+"-----------------------------------------------------------------
+" /File search
+"-----------------------------------------------------------------
+
 
 "let g:indent_guides_enable_on_vim_startup = 1
 "let g:indent_guides_guide_size = 1 
@@ -139,11 +188,6 @@ let g:airline_powerline_fonts = 1
 set laststatus=2
 
 
-"For Plugin 'Youcompleteme'
-" YCM
-"let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm/*','!~/*']
-"let g:ycm_global_ycm_extra_conf =  '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-"
 "     " Syntastic
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
@@ -160,11 +204,6 @@ let g:ycm_filetype_blacklist = {
 "For Plugin ' tern_for_vim '
 let g:tern_show_signature_in_pum = 1
 
-"For Plugin 'UltiSnips'
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
- let g:UltiSnipsJumpForwardTrigger="<c-b>"
- let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
  " If you want :UltiSnipsEdit to split your window.
  let g:UltiSnipsEditSplit="vertical"

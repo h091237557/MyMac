@@ -95,3 +95,10 @@ export ANDROID_HOME=/Users/mark/Library/Android/sdk
 
 export TERM="xterm-256color"
 
+export MONGODB_URI=mongodb://localhost/goodjob
+export REDIS_URL=redis://localhost
+export NODE_ENV=development
+export PATH=/usr/local/share/dotnet:$PATH
+
+PATH=$PATH:/usr/local/sbin
+
